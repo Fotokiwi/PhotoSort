@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoSort"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="900" Width="1600">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label x:Name="label" Content="PhotoSort by Elbwald Digital" HorizontalAlignment="Left" VerticalAlignment="Center" Width="523" Height="47" FontSize="18" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="3" Margin="10,0,0,0"/>
+        <TextBox x:Name="input_originalFilepath" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="B:\Jan-Eric\Bilder" VerticalAlignment="Top" Width="450" Height="40" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <Button x:Name="action_searchOriginalFilePath" Content="Quellpfad auswählen" HorizontalAlignment="Center" Width="125" Height="40" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.Column="3" Click="button_Click_OriginalFilePath"/>
+        <TextBox x:Name="input_destinationFilepath" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="Ordnerpfad" VerticalAlignment="Bottom" Width="450" Height="40" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <Button x:Name="action_searchDestinationFilePath" Content="Zielpfad auswählen" HorizontalAlignment="Center" Width="125" Height="40" Grid.Row="1" VerticalAlignment="Bottom" Grid.Column="3" Click="button_Click_DestinationFilePath"/>
+        <Button x:Name="action_button_analyse" Content="Ordner analysieren" HorizontalAlignment="Left" Margin="52,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="250" Height="40" Grid.ColumnSpan="2" Click="action_button_analyse_Click"/>
+        <Button x:Name="action_button_execute" Grid.Column="2" Content="Aktion ausführen" HorizontalAlignment="Left" Margin="53,0,0,0" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2" Width="250" Height="40"/>
+        <DataGrid x:Name="output_dataGrid_fileList" Grid.Column="5" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="4" Grid.RowSpan="5"/>
+        <DataGrid x:Name="output_dataGrid_fileType" Grid.Column="5" Grid.Row="5" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
+        <DataGrid x:Name="output_dataGrid_fileYear" Grid.Column="7" Grid.Row="5" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
+
     </Grid>
 </Window>
