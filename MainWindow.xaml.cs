@@ -70,6 +70,7 @@ namespace PhotoSort
 
         private void action_button_analyse_Click(object sender, RoutedEventArgs e)
         {
+            output_dataGrid_fileList.ItemsSource = null;
             filesInDirectory.Clear();
             fileExtensions.Clear();
             fileCreationYear.Clear();
@@ -84,7 +85,7 @@ namespace PhotoSort
 
                 if (info.Extension.ToLower() == ".jpg" || info.Extension.ToLower() == ".jpeg" || info.Extension.ToLower() == ".tiff")
                 {
-                    filesInDirectory.Add(new PhotoSortFile(info.FullName, info.Name, info.Extension, info.CreationTime, info.LastWriteTime, info.Length));
+                    filesInDirectory.Add(new PhotoSortFile(info.FullName, info.Name, info.Extension, info.CreationTime, info.LastWriteTime, info.Length, (bool)input_checkBox_useEXIF.IsChecked));
 
                     string extension = string.IsNullOrEmpty(info.Extension) ? "(ohne Endung)" : info.Extension.ToLower();
 
@@ -121,6 +122,11 @@ namespace PhotoSort
             output_dataGrid_fileList.ItemsSource = filesInDirectory;
             output_dataGrid_fileType.ItemsSource = fileExtensions;
             output_dataGrid_fileYear.ItemsSource = fileCreationYear;
+        }
+
+        private void output_dataGrid_fileList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            PhotoSortFile selectedFilePath = output_dataGrid_fileList.SelectedItem as PhotoSortFile;
         }
     }
 }

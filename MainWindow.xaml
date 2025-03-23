@@ -36,9 +36,40 @@
         <Button x:Name="action_searchDestinationFilePath" Content="Zielpfad auswählen" HorizontalAlignment="Center" Width="125" Height="40" Grid.Row="1" VerticalAlignment="Bottom" Grid.Column="3" Click="button_Click_DestinationFilePath"/>
         <Button x:Name="action_button_analyse" Content="Ordner analysieren" HorizontalAlignment="Left" Margin="52,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="250" Height="40" Grid.ColumnSpan="2" Click="action_button_analyse_Click"/>
         <Button x:Name="action_button_execute" Grid.Column="2" Content="Aktion ausführen" HorizontalAlignment="Left" Margin="53,0,0,0" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2" Width="250" Height="40"/>
-        <DataGrid x:Name="output_dataGrid_fileList" Grid.Column="5" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="4" Grid.RowSpan="5"/>
-        <DataGrid x:Name="output_dataGrid_fileType" Grid.Column="5" Grid.Row="5" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
-        <DataGrid x:Name="output_dataGrid_fileYear" Grid.Column="7" Grid.Row="5" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
+        <DataGrid x:Name="output_dataGrid_fileList" Grid.Column="5" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="4" Grid.RowSpan="5" SelectionChanged="output_dataGrid_fileList_SelectionChanged" AutoGenerateColumns="False"
+          IsReadOnly="True"
+          Margin="10"
+          CanUserSortColumns="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Dateiname" Binding="{Binding NameOfFile}" />
+                <DataGridTextColumn Header="Endung" Binding="{Binding TypeOfFile}" />
+                <DataGridTextColumn Header="Erstellt am" Binding="{Binding CreationOfFile, StringFormat={}{0:dd.MM.yyyy}}" />
+                <DataGridTextColumn Header="Größe (KB)" Binding="{Binding SizeOfFile, ConverterCulture=de-DE, StringFormat={}{0:N0}}" />
+                <DataGridTextColumn Header="Dateipfad" Binding="{Binding PathOfFile}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <TabControl x:Name="tabControl" Grid.Row="5" Grid.RowSpan="3" Grid.ColumnSpan="5">
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="output_dataGrid_fileYear" Grid.Column="1" Grid.Row="0" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="1" Grid.RowSpan="2"/>
+                    <DataGrid x:Name="output_dataGrid_fileType" Grid.Column="0" Grid.Row="0" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="1" Grid.RowSpan="2"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        <Rectangle HorizontalAlignment="Left" Height="176" Margin="42,0,0,0" Grid.Row="3" Stroke="Black" VerticalAlignment="Center" Width="643" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
+        <Label x:Name="label1" Grid.Column="1" Content="Regelwerk" HorizontalAlignment="Left" Margin="131,12,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="18" Grid.ColumnSpan="2" FontWeight="Bold"/>
+        <CheckBox x:Name="input_checkBox_useEXIF" Content="Dateiinformationen mit EXIF Werten überschreiben" HorizontalAlignment="Left" Margin="52,49,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
